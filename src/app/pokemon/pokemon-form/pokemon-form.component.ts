@@ -21,6 +21,7 @@ export class PokemonFormComponent implements OnInit {
   // Tous les types disponibles pour un pokémon
   ngOnInit() {
     this.types = this.pokemonService.getPokemonTypeList();
+    this.isAddForm = this.router.url.includes('add');
   }
 
   // Recupere les types du pokemon
@@ -54,9 +55,17 @@ export class PokemonFormComponent implements OnInit {
     return true;
   }
 
-  onSubmit() {
-    console.log("Submit form !");
-    this.router.navigate(['/pokemon', this.pokemon.id]); // Redirige vers la page detail du pokemon
-  }
 
+  onSubmit() {
+    if(this.isAddForm) {
+      this.pokemonService.addPokemon(this.pokemon)
+      // Redirige vers la page du nouveau pokémon
+        .subscribe((pokemon: Pokemon) => this.router.navigate(['/pokemon', pokemon.id]));
+    } else {
+      // Redirige vers la page du pokémon modifié
+      this.pokemonService.updatePokemon(this.pokemon)
+        .subscribe(() => this.router.navigate(['/pokemon', this.pokemon.id]));
+    }
+  }
+  
 }

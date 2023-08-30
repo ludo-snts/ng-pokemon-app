@@ -7,8 +7,6 @@
 
 .brand-logo {
     /* TEST: Shadow derriere png fond transparent */
-    -webkit-filter: drop-shadow(0px 5px 7px rgba(0,0,0,0.3));
+    -webkit-filter: drop-shadow(0px 5px 7px rgba(0, 0, 0, 0.3));
     -ms-filter: "progid:DXImageTransform.Microsoft.Dropshadow(OffX=12, OffY=12, Color='#444')";
 }
-
-
