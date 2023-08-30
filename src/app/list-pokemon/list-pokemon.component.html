@@ -1,0 +1,20 @@
+<div class="container">
+    <div class="row">
+    <div *ngFor="let pokemon of pokemonList" class="col s12 m6 l4">
+            <div class="card horizontal"  (click)="goToPokemon(pokemon)" pkmnBorderCard>
+                <div class="card-image ">
+                    <img [src]="pokemon.picture" [alt]="pokemon.name" />
+                </div>
+                <div class="card-stacked">
+                    <div class="card-content">
+                        <h6>{{ pokemon.name }}</h6>
+                        <p><small>{{ pokemon.created | date: 'dd/MM/yyyy' }}</small></p>
+                        <span *ngFor="let type of pokemon.types" class="{{ type | pokemonTypeColor }}">
+                            {{ type }}
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
