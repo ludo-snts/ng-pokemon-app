@@ -16,7 +16,7 @@ export class PokemonService {
   }
 
   // Retourne les types d'un pokémon
-  getPokemonTypesList(): string[] {
+  getPokemonTypeList(): string[] {
     return [
       'Plante', 
       'Feu', 'Eau', 
