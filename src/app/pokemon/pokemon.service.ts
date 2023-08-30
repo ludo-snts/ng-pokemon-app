@@ -25,6 +25,18 @@ export class PokemonService {
     );
   }
 
+  // Recherche un pokémon avec un terme passé en paramètre (avec autocompletion)
+  searchPokemonList(term: string): Observable<Pokemon[]> {
+    if(term.length <= 1) { // Si le terme de recherche est vide ou contient un seul caractère
+      return of([]); // Retourne un Observable de tableau de pokémons vide
+    } 
+
+    return this.http.get<Pokemon[]>(`api/pokemons/?name=${term}`).pipe(
+      tap((response) => this.log(response)),
+      catchError((error) => this.handleError(error, []))
+    );
+  }
+
   // Modification d'un pokémon via l'API (CRUD UPDATE)
   updatePokemon(pokemon: Pokemon): Observable<null> {
     const httpOptions = {
